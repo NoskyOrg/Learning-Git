@@ -392,7 +392,7 @@ $ git commit -m 'remove license'
  delete mode 100644 license
 ```
 
-> 先手动删除文件，然后使用git rm \<file>和git add<file>效果是一样的
+> 先手动删除文件，然后使用git rm \<file>和git add\<file>效果是一样的
 
 ### 2、如果是不小心删错了
 
@@ -577,7 +577,7 @@ git branch命令会列出所有分支，当前分支前面会标一个*号。
 然后提交：
 
 ```git
-git add readme.txt 
+git add readme.txt
 git commit -m "branch test"
 [dev b17d20e] branch test
  1 file changed, 1 insertion(+)
@@ -1530,7 +1530,7 @@ Date:   Thu Aug 22 22:49:22 2013 +0800
 每个仓库的Git配置文件都放在.git/config文件中：
 
 ```bash
-$ cat .git/config 
+$ cat .git/config
 [core]
     repositoryformatversion = 0
     filemode = true
@@ -1574,54 +1574,3 @@ $ cat .gitconfig
 ## 搭建Git服务器
 
 > [Git-Server](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
