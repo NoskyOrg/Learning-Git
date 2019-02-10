@@ -717,11 +717,11 @@ $ cat license
 a
 b
 c
-<<<<<<< HEAD
+<<<<<< HEAD
 add two maste
 =======
 add one
->>>>>>> feature1
+>>>>>> feature1
 ```
 
 ### 处理冲突
