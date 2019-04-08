@@ -2,14 +2,14 @@
 
 ## 初始设置
 
-```git
+```bash
 git config --global user.name 'zhenLEE'
 git config --global user.email 'abc@lixyz.net'
 ```
 
 ## 查看日志
 
-```git
+```bash
 git log
 
 如果只需要简单显示：
@@ -27,7 +27,7 @@ git log --pretty=oneline
 
 现在，把当前版本回退到上一个版本，可以使用git reset命令：
 
-```git
+```bash
 $ git reset --hard HEAD^
 HEAD is now at e475afc add distributed
 
@@ -44,7 +44,7 @@ HEAD is now at e475afc add distributed
 你就可以顺着往上找啊找啊，找到那个append GPL的commit id是1094adb...
 于是就可以指定回到未来的某个版本：
 
-```git
+```bash
 $ git reset --hard 1094a
 HEAD is now at 83b0afe append GPL
 ```
@@ -65,7 +65,7 @@ git-head
 
 在Git中，总是有后悔药可以吃的。当你用`$ git reset --hard HEAD^`回退到add distributed版本时，再想恢复到append GPL，就必须找到append GPL的commit id。Git提供了一个命令git reflog用来记录你的每一次命令：
 
-```git
+```bash
 $ git reflog
 e475afc HEAD@{1}: reset: moving to HEAD^
 1094adb (HEAD -> master) HEAD@{2}: commit: append GPL
@@ -113,7 +113,7 @@ Git的版本库里存了很多东西，
 
 在工作区新建一个 license 文件，之后查看 git 状态：
 
-```git
+```bash
 $ git status;
 On branch master
 Your branch is based on 'origin/master', but the upstream is gone.
@@ -131,7 +131,7 @@ Git非常清楚地告诉我们，而LICENSE还从来没有被添加过，所以�
 
 现在，使用命令git add，把LICENSE添加后，用git status再查看一下：
 
-```git
+```bash
 $ git status;
 On branch master
 Your branch is based on 'origin/master', but the upstream is gone.
@@ -154,7 +154,7 @@ Changes to be committed:
 
 此时进行提交后，查看状态
 
-```git
+```bash
 $ git commit -m '提交测试'
 [master 93dda55] 提交测试
  1 file changed, 1 insertion(+)
@@ -186,7 +186,7 @@ nothing to commit, working tree clean
 
 在 git add 后查看 status 发现有改动，
 
-```git
+```bash
 $ git status;
 On branch master
 Your branch is based on 'origin/master', but the upstream is gone.
@@ -200,7 +200,7 @@ Changes to be committed:
 
 但是 commit 后查看 git status 发现第二次的修改没有提交
 
-```git
+```bash
 $ git status;
 On branch master
 Your branch is based on 'origin/master', but the upstream is gone.
@@ -225,7 +225,7 @@ Changes not staged for commit:
 
 提交后，用 git diff 命令查看工作区和版本库里面最新版本的区别：
 
-```git
+```bash
 $ git diff HEAD -- license
 warning: LF will be replaced by CRLF in license.
 The file will have its original line endings in your working directory.
@@ -261,7 +261,7 @@ index 6262928..ecd2279 100644
 
 如果修改完文件之后，需要撤销，手动恢复到上一个版本
 
-```git
+```bash
 $ git status;
 On branch master
 Your branch is based on 'origin/master', but the upstream is gone.
@@ -289,7 +289,7 @@ git checkout -- file 命令中的 -- 很重要，没有 -- ，就变成了“切
 
 ### 已经 add 到暂存区
 
-```git
+```bash
 $ git status;
 On branch master
 Your branch is based on 'origin/master', but the upstream is gone.
@@ -303,7 +303,7 @@ Changes to be committed:
 
 Git同样告诉我们，用命令git reset HEAD \<file>可以把暂存区的修改撤销掉（unstage），重新放回工作区：
 
-```git
+```bash
 $ git reset HEAD license
 Unstaged changes after reset:
 M       license
@@ -320,7 +320,7 @@ two
 
 此时查看状态，暂存区是干净的，工作区有修改：
 
-```git
+```bash
 $ git status;
 On branch master
 Your branch is based on 'origin/master', but the upstream is gone.
@@ -337,7 +337,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 此时可以丢弃工作区的修改
 
-```git
+```bash
 $ git checkout -- license
 
 此时查看，最新添加修改的 1 2 已经没有了
@@ -363,7 +363,7 @@ two
 
 如果你 add 了一个文件，之后直接 rm file 进行了删除，git status 就会显示已经删除了一个文件
 
-```git
+```bash
 $ git status;
 On branch master
 Your branch is based on 'origin/master', but the upstream is gone.
@@ -382,7 +382,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 如果要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：
 
-```git
+```bash
 $ git rm license
 rm 'license'
 
@@ -401,9 +401,9 @@ $ git commit -m 'remove license'
 
 > git checkout -- license
 
-git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以"一键还原"。
+git checkout 其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以"一键还原"。
 
-```git
+```bash
 $ rm -f license
 
 $ git checkout -- license
@@ -576,7 +576,7 @@ git branch命令会列出所有分支，当前分支前面会标一个*号。
 
 然后提交：
 
-```git
+```bash
 git add readme.txt
 git commit -m "branch test"
 [dev b17d20e] branch test
@@ -594,7 +594,7 @@ git commit -m "branch test"
 
 ### 把dev分支合并到master分支
 
-```git
+```bash
 $ git merge dev
 Updating d46f35e..b17d20e
 Fast-forward
@@ -643,7 +643,7 @@ Git鼓励大量使用分支：
 
 ### 在feature1分支上提交
 
-```git
+```bash
 git add readme.txt
 
 git commit -m "AND simple"
@@ -653,7 +653,7 @@ git commit -m "AND simple"
 
 ### 切换到master分支
 
-```git
+```bash
 $ git checkout master
 Switched to branch 'master'
 Your branch is ahead of 'origin/master' by 1 commit.
@@ -668,7 +668,7 @@ Git还会自动提示我们当前master分支比远程的master分支要超前1�
 
 提交：
 
-```git
+```bash
 $ git add readme.txt
 $ git commit -m "& simple"
 [master 5dc6824] & simple
@@ -681,7 +681,7 @@ $ git commit -m "& simple"
 
 这种情况下，Git无法执行“快速合并”，只能试图把各自的修改合并起来，但这种合并就可能会有冲突，我们试试看：
 
-```git
+```bash
 git merge feature1
 Auto-merging license
 CONFLICT (content): Merge conflict in license
@@ -692,7 +692,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 Git告诉我们，readme.txt文件存在冲突，必须手动解决冲突后再提交。
 git status也可以告诉我们冲突的文件：
 
-```git
+```bash
 git status;
 On branch master
 Your branch is based on 'origin/master', but the upstream is gone.
@@ -732,7 +732,7 @@ Git用 <<<<<<<，=======，>>>>>>> 标记出不同分支的内容，我们修改
 
 再提交：
 
-```git
+```bash
 $ git add license
 
 $ git commit -m 'license';
@@ -745,7 +745,7 @@ $ git commit -m 'license';
 
 用带参数的git log也可以看到分支的合并情况：
 
-```git
+```bash
  git log --graph --pretty=oneline --abbrev-commit
 *   a9895a4 (HEAD -> master) license
 |\
@@ -786,14 +786,14 @@ $ git commit -m 'license';
 
 首先，仍然创建并切换dev分支：
 
-```git
+```bash
 $ git checkout -b dev
 Switched to a new branch 'dev'
 ```
 
 修改 license，并提交一个新的 commit
 
-```git
+```bash
 $ vi license
 
 $ git add license
@@ -805,7 +805,7 @@ $ git commit -m 'dev one'
 
 现在切换回 master
 
-```git
+```bash
 $ git checkout master
 Switched to branch 'master'
 Your branch is based on 'origin/master', but the upstream is gone.
@@ -821,7 +821,7 @@ nothing to commit, working tree clean
 
 准备合并 dev 分支，使用 --no-ff，表示禁用 fast forward，因为本次合并要创建一个新的commit，所以加上-m参数，把commit描述写进去。
 
-```git
+```bash
 $ git merge --no-ff -m 'dev two no ff' dev
 Merge made by the 'recursive' strategy.
  license | 1 +
@@ -830,7 +830,7 @@ Merge made by the 'recursive' strategy.
 
 合并后，查看 分支历史
 
-```git
+```bash
 $ git log --graph --pretty=oneline --abbrev-commit
 *   bd73cbe (HEAD -> master) dev two no ff
 |\
@@ -896,7 +896,7 @@ Git分支十分强大，在团队开发中应该充分应用。
 首先确定要在哪个分支上修复bug，
 假定需要在master分支上修复，就从master创建临时分支：
 
-```git
+```bash
 $ git checkout master
 Already on 'master'
 Your branch is based on 'origin/master', but the upstream is gone.
@@ -908,7 +908,7 @@ Switched to a new branch 'issue-101'
 
 现在修复bug，然后提交：
 
-```git
+```bash
 $ git add license
 
 $ git commit -m 'fix bug 101'
@@ -918,7 +918,7 @@ $ git commit -m 'fix bug 101'
 
 修复完成后，切换到master分支，并完成合并，最后删除issue-101分支：
 
-```git
+```bash
 $ git checkout master
 Switched to branch 'master'
 Your branch is based on 'origin/master', but the upstream is gone.
@@ -970,7 +970,7 @@ Merge made by the 'recursive' strategy.
 
 5分钟后，开发完毕：
 
-```git
+```bash
 $ git add vulcan.py
 
 $ git status
@@ -998,7 +998,7 @@ $ git commit -m "add feature vulcan"
 
 虽然白干了，但是这个包含机密资料的分支还是必须就地销毁：
 
-```git
+```bash
 $ git branch -d feature-vulcan
 error: The branch 'feature-vulcan' is not fully merged.
 If you are sure you want to delete it, run 'git branch -D feature-vulcan'.
@@ -1033,7 +1033,7 @@ Git友情提醒，feature-vulcan分支还没有被合并，
 
 或者，用git remote -v显示更详细的信息：
 
-```git
+```bash
 $ git remote -v
 origin  git@github.com:michaelliao/learngit.git (fetch)
 origin  git@github.com:michaelliao/learngit.git (push)
@@ -1086,7 +1086,7 @@ origin  git@github.com:michaelliao/learngit.git (push)
 现在，他就可以在dev上继续修改，
 然后，时不时地把dev分支push到远程：
 
-```git
+```bash
 git add env.txt
 git commit -m "add env"
 git push origin dev
@@ -1095,7 +1095,7 @@ git push origin dev
 你的小伙伴已经向origin/dev分支推送了他的提交，
 而碰巧你也对同样的文件作了修改，并试图推送：
 
-```git
+```bash
 git add env.txt
 git commit -m "add new env"
 git push origin dev
@@ -1113,14 +1113,14 @@ git pull也失败了，
 原因是没有指定本地dev分支与远程origin/dev分支的链接，
 根据提示，设置dev和origin/dev的链接：
 
-```git
+```bash
 $ git branch --set-upstream-to=origin/dev dev
 Branch 'dev' set up to track remote branch 'dev' from 'origin'.
 ```
 
 再pull：
 
-```git
+```bash
 $ git pull
 Auto-merging env.txt
 CONFLICT (add/add): Merge conflict in env.txt
@@ -1131,7 +1131,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 解决的方法和分支管理中的解决冲突完全一样。
 解决后，提交，再push：
 
-```git
+```bash
 $ git commit -m "fix env conflict"
 [dev 57c53ab] fix env conflict
 
@@ -1204,7 +1204,7 @@ Git有commit，为什么还要引入tag？
 
 在Git中打标签非常简单，首先，切换到需要打标签的分支上：
 
-```git
+```bash
 $ git branch
 * dev
   master
@@ -1224,7 +1224,7 @@ Switched to branch 'master'
 
 方法是找到历史提交的commit id，然后打上就可以了：
 
-```git
+```bash
 $ git log --pretty=oneline --abbrev-commit
 12a631b (HEAD -> master, tag: v1.0, origin/master) merged bug fix 101
 4c805e2 fix bug 101
@@ -1255,7 +1255,7 @@ v1.0
 注意，标签不是按时间顺序列出，而是按字母排序的。
 可以用git show \<tagname>查看标签信息：
 
-```git
+```bash
 $ git show v0.9
 commit f52c63349bc3c1593499807e5c8e972b82c8f286 (tag: v0.9)
 Author: Michael Liao <askxuefeng@gmail.com>
@@ -1275,7 +1275,7 @@ diff --git a/readme.txt b/readme.txt
 
 用命令git show \<tagname>可以看到说明文字：
 
-```git
+```bash
 $ git show v0.1
 tag v0.1
 Tagger: Michael Liao <askxuefeng@gmail.com>
@@ -1311,7 +1311,7 @@ Deleted tag 'v0.1' (was f15b0dd)
 如果要推送某个标签到远程，
 使用命令git push origin \<tagname>：
 
-```git
+```bash
 $ git push origin v1.0
 Total 0 (delta 0), reused 0 (delta 0)
 To github.com:michaelliao/learngit.git
@@ -1320,7 +1320,7 @@ To github.com:michaelliao/learngit.git
 
 或者，一次性推送全部尚未推送到远程的本地标签：
 
-```git
+```bash
 $ git push origin --tags
 Total 0 (delta 0), reused 0 (delta 0)
 To github.com:michaelliao/learngit.git
@@ -1379,7 +1379,7 @@ To github.com:michaelliao/learngit.git
 - 如果有自定义目录，目录下就会有Desktop.ini文件，
 - 因此你需要忽略Windows自动生成的垃圾文件：
 
-```git
+```bash
 # Windows:
 Thumbs.db
 ehthumbs.db
@@ -1388,7 +1388,7 @@ Desktop.ini
 
 然后，继续忽略Python编译产生的.pyc、.pyo、dist等文件或目录：
 
-```git
+```bash
 # Python:
 *.py[cod]
 *.so
@@ -1400,7 +1400,7 @@ build
 
 加上你自己定义的文件，最终得到一个完整的.gitignore文件，内容如下：
 
-```git
+```bash
 # Windows:
 Thumbs.db
 ehthumbs.db
@@ -1432,7 +1432,7 @@ windows 在创建文件时，会提示没有文件名。
 
 有些时候，你想添加一个文件到Git，但发现添加不了，原因是这个文件被.gitignore忽略了：
 
-```git
+```bash
 $ git add App.class
 The following paths are ignored by one of your .gitignore files:
 App.class
@@ -1471,7 +1471,7 @@ Git会告诉我们，.gitignore的第3行规则忽略了该文件，于是我们
 - ci表示commit，
 - br表示branch：
 
-```git
+```bash
 git config --global alias.co checkout
 git config --global alias.ci commit
 git config --global alias.br branch
@@ -1500,7 +1500,7 @@ git config --global alias.br branch
 
 这样，用git last就能显示最近一次的提交：
 
-```git
+```bash
 $ git last
 commit adca45d317e6d8a4b23f9811c3d7b7f0f180bfe2
 Merge: bd6ae48 291bea8
