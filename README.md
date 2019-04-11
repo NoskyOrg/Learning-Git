@@ -68,7 +68,7 @@ git config user.name
 git config user.email
 
 git config --global user.name 'zhenLEE'
-git config --global user.email 'abc@lixyz.net'
+git config --global user.email 'public@lixyz.net'
 ```
 
 ## 查看日志
