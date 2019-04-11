@@ -32,7 +32,7 @@ git stash apply stash@{num}
 - **我们要求进入主干时，每个功能和bugfix只能有一个提交**
 - **不管开发过程中有多少个commit，我们要求最终提交每个bugfix或feature只能有一个提交**
 
-因此可以先用`git reset退回到最早的commit`，然后把自己的修改最后`打包成一个commit`，再去跟主干合并。
+因此可以先用`git reset` 退回到最早的commit，然后把自己的修改最后`打包成一个commit`，再去跟主干合并。
 
 利用这两个命令，我们可以很好的管理我们的MySQL开发。我们只有一个master分支作为主干，不允许在主干上直接开发。每个同学根据feature和bug的issue建立分支，然后在分支上开发。
 
@@ -58,6 +58,80 @@ git stash apply stash@{num}
 `![这是图片别名](https://cdn.liaoxuefeng.com/cdn/files/attachments/001384907702917346729e9afbf4127b6dfbae9207af016000/0)`
 
 ![这是图片别名](https://cdn.liaoxuefeng.com/cdn/files/attachments/001384907702917346729e9afbf4127b6dfbae9207af016000/0)
+
+
+## 初始化本地分支
+
+```bash
+git clone http://gitlab.greatopensource.com/abc/abc-traning.git
+git remote rename origin upstream
+git remote add origin http://gitlab.greatopensource.com/[your_name]/abc.git  
+这个是你fork的自己的分支
+```
+
+### 本地开发步骤
+
+```bash
+git fetch
+git checkout master
+git merge origin/master
+git checkout -b branchName      
+
+# 做变更
+git add -u
+git add newFile
+
+git commit -m "commit信息"
+统一采用如下格式: 
+第一行为对应的issue编号和题目，例如 Issue #2 如何调整非动态参数, 
+第二行为空行，
+从第三行开始写本次提交做的修改内容，可以考虑直接复制issue的内容
+
+git push origin branchName     
+该命令的输出中有一个git的链接，点击这个链接或在浏览器中打开这个链接会跳到 git 提 mr 的页面，然后设置 mr 的Assignee为自己并点上`Remove source branch`，然后提交
+```
+
+### 按照复审修改后的重新提交MR的方法
+
+```bash
+git add -u
+git commit --amend
+git push origin branchName --force
+```
+
+### 将本地分支更新到最新版本的方法
+
+```bash
+git fetch
+git rebase upstream/master
+[如果有冲突会报错并提示你那里有冲突，修改那个冲突文件] 
+
+git add -u
+git add newFile
+
+git rebase --continue
+然后重新提交
+如果是第一次提交`git commit`，否则 `git commit --amend`
+git push --force origin branchName 
+```
+
+### 把本地多次提交合并成一个提交
+
+```bash
+git log > /tmp/logs
+vim /tmp/logs 文件找到最新的master分支提交信息，例如:
+
+commit a7f5981d1b842e645cd43e7efa9f300e4cae8cba
+Author: zhenLEE <abc@lixyz.net>
+Date:   Thu Apr 4 22:54:50 2019
+
+使用 git reset a7f5981d1b842e645cd43e7efa9f300e4cae8cba 取消该master提交信息之后的所有commit
+也可以使用前几位，git reset a7f5981d
+
+然后 git add -u 和 git add newFile
+git commit
+git push --force origin branchName
+```
 
 ## 初始设置
 
