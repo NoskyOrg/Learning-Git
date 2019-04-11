@@ -6,11 +6,11 @@
 
 ### git stash
 
-我们有时会遇到这样的情况，正在分支a上开发一半，然后分支b上发现Bug，需要马上处理。
+我们有时会遇到这样的情况，正在`分支a`上开发一半，然后`分支b`上发现Bug，需要马上处理。
 
-这时候分支a上的修改怎么办呢，git add 是不行的，有的git客户端版本会提示还有add过的文件没提交不能切换分支，有的git客户端版本会把修改带到 b分支。
+这时候`分支a`上的修改怎么办呢，git add 是不行的，有的git客户端版本会提示还有add过的文件没提交不能切换分支，有的git客户端版本会把修改带到 `b分支`。
 
-git stash 就是解决这个问题，它把当前工作区的修改和 git add 的内容都保存到一个地方，然后 git reset HEAD，使工作区回到上一次提交，处于干净状态。然后就可以很放心的切到另外的分支b 干活了。
+`git stash`就是解决这个问题，它把当前工作区的修改和 git add 的内容都保存到一个地方，然后 `git reset HEAD`，使工作区回到上一次提交，处于干净状态。然后就可以很放心的切到另外的`分支b`干活了。
 
 ```bash
 git stash save “先给我保存一下，我要去别的分支修bug”
@@ -87,12 +87,12 @@ git reflog
 
 ### 返回某个版本
 
-首先，Git必须知道当前版本是哪个版本
-在Git中，用HEAD表示当前版本，也就是最新的提交
-上一个版本就是HEAD^，上上一个版本就是HEAD^^
-当然往上100个版本写100个^比较容易数不过来，所以写成HEAD~100
+首先，Git必须知道当前版本是哪个版本<br>
+在Git中，用`HEAD`表示`当前版本`，也就是`最新的提交`<br>
+`上一个`版本就是`HEAD^`，`上上一个`版本就是`HEAD^^`<br>
+当然`往上100个版本`写100个^比较容易数不过来，所以写成`HEAD~100`<br>
 
-现在，把当前版本回退到上一个版本，可以使用git reset命令：
+现在，把当前版本`回退到上一个版本`，可以使用`git reset`命令：
 
 ```bash
 $ git reset --hard HEAD^
@@ -101,22 +101,22 @@ HEAD is now at e475afc add distributed
 --hard参数有啥意义?
 ```
 
-此时用git log再看看现在版本库的状态，
-最新的那个版本已经看不到了！
-好比你从21世纪坐时光穿梭机来到了19世纪，想再回去已经回不去了，肿么办？
+此时用git log再看看现在版本库的状态，<br>
+最新的那个版本已经看不到了！<br>
+好比你从21世纪坐时光穿梭机来到了19世纪，想再回去已经回不去了，肿么办？<br>
 
 ### 撤销还原
 
-办法其实还是有的，只要上面的命令行窗口还没有被关掉，
-你就可以顺着往上找啊找啊，找到那个append GPL的commit id是1094adb...
-于是就可以指定回到未来的某个版本：
+办法其实还是有的，只要上面的命令行窗口还没有被关掉，<br>
+你就可以顺着往上找啊找啊，找到那个append GPL的commit id是1094adb...<br>
+于是就可以指定回到未来的某个版本：<br>
 
 ```bash
 $ git reset --hard 1094a
 HEAD is now at 83b0afe append GPL
 ```
 
-版本号没必要写全，前几位就可以了，Git会自动去找。
+版本号没必要写全，前几位就可以了，Git会自动去找。<br>
 当然也不能只写前一两位，因为Git可能会找到多个版本号，就无法确定是哪一个了
 
 ---
@@ -130,7 +130,7 @@ git-head
 
 想恢复到新版本怎么办？找不到新版本的commit id怎么办？
 
-在Git中，总是有后悔药可以吃的。当你用`$ git reset --hard HEAD^`回退到add distributed版本时，再想恢复到append GPL，就必须找到append GPL的commit id。Git提供了一个命令git reflog用来记录你的每一次命令：
+在Git中，总是有后悔药可以吃的。当你用`$ git reset --hard HEAD^`回退到`add distributed`版本时，再想恢复到`append GPL`，就必须找到append GPL的`commit id`。Git提供了一个命令`git reflog`用来记录你的每一次命令：
 
 ```bash
 $ git reflog
@@ -140,14 +140,13 @@ e475afc HEAD@{3}: commit: add distributed
 eaadf4e HEAD@{4}: commit (initial): wrote a readme file
 ```
 
-终于舒了口气，从输出可知，append GPL的commit id是1094adb，现在，你又可以乘坐时光机回到未来了。
+终于舒了口气，从输出可知，`append GPL`的`commit id`是`1094adb`，现在，你又可以乘坐时光机回到未来了。
 
 ## 工作区，暂存区
 
 ### 工作区（Working Directory）
 
-就是你在电脑里能看到的目录，
-比如我的 abc.git 文件夹就是一个工作区：working-dir
+就是你在电脑里能看到的目录，比如我的 `abc.git` 文件夹就是一个工作区：`working-dir`
 
 ---
 
@@ -169,7 +168,7 @@ Git的版本库里存了很多东西，<br>
 1. 是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；
 2. 是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。
 
-因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，
+因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，<br>
 所以,现在git commit就是往master分支上提交更改。
 
 ---
@@ -235,7 +234,7 @@ Your branch is based on 'origin/master', but the upstream is gone.
 nothing to commit, working tree clean
 ```
 
-如果提交后，没有进行其他修改，此时工作区就是干净的，
+如果提交后，没有进行其他修改，此时工作区就是干净的，<br>
 版本库变成了这样，暂存区就没有任何内容了：
 
 ![图例](https://cdn.liaoxuefeng.com/cdn/files/attachments/0013849077337835a877df2d26742b88dd7f56a6ace3ecf000/0)
@@ -572,14 +571,10 @@ Git不但会把本地的master分支内容推送的远程新的master分支，<b
 
 ---
 
-如果有多个人协作开发，那么每个人各自从远程克隆一份就可以了。
-
-GitHub给出的地址不止一个，还可以用<https://github.com/michaelliao/gitskills.git>这样的地址。
-
-这是因为Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
-
-使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，
-
+如果有多个人协作开发，那么每个人各自从远程克隆一份就可以了。<br>
+GitHub给出的地址不止一个，还可以用<https://github.com/michaelliao/gitskills.git>这样的地址。<br>
+这是因为Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。<br>
+使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令，<br>
 但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https。
 
 ### 小结
@@ -697,7 +692,8 @@ $ git branch
 * master
 ```
 
-因为创建、合并和删除分支非常快，所以Git鼓励你使用分支完成某个任务，合并后再删掉分支，这和直接在master分支上工作效果是一样的，但过程更安全。
+因为创建、合并和删除分支非常快，所以Git鼓励你使用分支完成某个任务，<br>
+合并后再删掉分支，这和直接在master分支上工作效果是一样的，但过程更安全。
 
 ### 小结
 
@@ -852,19 +848,15 @@ $ git commit -m 'license';
 
 ### 小结
 
-当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。
-
-解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。
-
+当Git无法自动合并分支时，就必须首先解决冲突。解决冲突后，再提交，合并完成。<br>
+解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容，再提交。<br>
 用git log --graph命令可以看到分支合并图。
 
 ## 分支管理策略
 
-通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。
-
-如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。
-
-下面我们实战一下--no-ff方式的git merge：
+通常，合并分支时，如果可能，Git会用`Fast forward`模式，但这种模式下，删除分支后，会丢掉分支信息。<br>
+如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。<br>
+下面我们实战一下`--no-ff`方式的`git merge`：
 
 首先，仍然创建并切换dev分支：
 
@@ -901,7 +893,7 @@ Your branch is based on 'origin/master', but the upstream is gone.
 nothing to commit, working tree clean
 ```
 
-准备合并 dev 分支，使用 --no-ff，表示禁用 fast forward，因为本次合并要创建一个新的commit，所以加上-m参数，把commit描述写进去。
+准备合并 dev 分支，使用 `--no-ff`，表示禁用 fast forward，因为本次合并要创建一个新的commit，所以加上-m`参数，把commit描述写进去。
 
 ```bash
 $ git merge --no-ff -m 'dev two no ff' dev
@@ -952,7 +944,7 @@ $ git log --graph --pretty=oneline --abbrev-commit
 
 Git分支十分强大，在团队开发中应该充分应用。
 
-合并分支时，加上--no-ff参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。
+合并分支时，加上`--no-ff`参数就可以用普通模式合并，合并后的历史有分支，能看出来曾经做过合并，而fast forward合并就看不出来曾经做过合并。
 
 ## Bug 分支
 
@@ -968,11 +960,11 @@ Git分支十分强大，在团队开发中应该充分应用。
 并不是你不想提交，而是工作只进行到一半，还没法提交，预计完成还需1天时间。<br>
 但是，必须在两个小时内修复该bug，怎么办？<br>
 
-幸好，Git还提供了一个stash功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作：
+幸好，Git还提供了一个stash功能，可以把当前工作现场`储藏`起来，等以后恢复现场后继续工作：
 
 > git stash
 
-现在，用git status查看工作区，就是干净的（除非有没有被Git管理的文件），<br>
+现在，用`git status`查看工作区，就是干净的（除非有没有被Git管理的文件），<br>
 因此可以放心地创建分支来修复bug。<br>
 <br>
 首先确定要在哪个分支上修复bug，<br>
@@ -1014,8 +1006,7 @@ Merge made by the 'recursive' strategy.
 
 ### 修复完成后，回到 dev 分支
 
-此时工作区是干净的，刚才的工作现场存到哪去了？
-用`git stash list`命令看看：
+此时工作区是干净的，刚才的工作现场存到哪去了？用`git stash list`命令看看：
 
 ```bash
 $ git stash list
@@ -1027,8 +1018,7 @@ stash@{0}: WIP on dev: f52c633 add merge
 1. 用git stash apply恢复，但是恢复后，stash内容并不删除，你需要用git stash drop来删除；
 2. 用git stash pop，恢复的同时把stash内容也删了：
 
-你可以多次stash，
-恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：
+你可以多次stash，恢复的时候，先用`git stash list`查看，然后恢复指定的stash，用命令：
 
 > git stash apply stash@{0}
 
@@ -1036,7 +1026,7 @@ stash@{0}: WIP on dev: f52c633 add merge
 
 修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；
 
-当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场。
+当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再`git stash pop`，回到工作现场。
 
 ## features 分支
 
@@ -1073,16 +1063,10 @@ $ git commit -m "add feature vulcan"
  create mode 100644 vulcan.py
 ```
 
-切回dev，准备合并：
-
-`git checkout dev`
-
+切回dev，准备合并：`git checkout dev`<br>
 一切顺利的话，feature分支和bug分支是类似的，合并，然后删除。
 
-但是！
-
-就在此时，接到上级命令，因经费不足，新功能必须取消！
-
+但是！就在此时，接到上级命令，因经费不足，新功能必须取消！<br>
 虽然白干了，但是这个包含机密资料的分支还是必须就地销毁：
 
 ```bash
@@ -1107,9 +1091,8 @@ Deleted branch feature-vulcan (was 287773e).
 
 ### 小结
 
-开发一个新feature，最好新建一个分支；
-
-如果要丢弃一个没有被合并过的分支，可以通过git branch -D \<name>强行删除。
+开发一个新feature，最好新建一个分支；<br>
+如果要丢弃一个没有被合并过的分支，可以通过`git branch -D <name>`强行删除。
 
 ## 多人协作
 
