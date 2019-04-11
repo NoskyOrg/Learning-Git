@@ -2,7 +2,12 @@
 
 ## 初始设置
 
+### 查看 & 设置用户信息
+
 ```bash
+git config user.name
+git config user.email
+
 git config --global user.name 'zhenLEE'
 git config --global user.email 'abc@lixyz.net'
 ```
@@ -956,11 +961,10 @@ Merge made by the 'recursive' strategy.
 
 软件开发中，总有无穷无尽的新的功能要不断添加进来。
 
-添加一个新功能时，你肯定不希望因为一些实验性质的代码，把主分支搞乱了，
-所以，每添加一个新功能，最好新建一个feature分支，在上面开发，完
-成后，合并，最后，删除该feature分支。
+添加一个新功能时，你肯定不希望因为一些实验性质的代码，把主分支搞乱了，<br>
+所以，每添加一个新功能，最好新建一个feature分支，在上面开发，完成后，合并，最后，删除该feature分支。
 
-现在，你终于接到了一个新任务：
+现在，你终于接到了一个新任务：<br>
 开发代号为Vulcan的新功能，该功能计划用于下一代星际飞船。
 
 于是准备开发：
@@ -1004,9 +1008,9 @@ error: The branch 'feature-vulcan' is not fully merged.
 If you are sure you want to delete it, run 'git branch -D feature-vulcan'.
 ```
 
-销毁失败。
-Git友情提醒，feature-vulcan分支还没有被合并，
-如果删除，将丢失掉修改，
+销毁失败。<br>
+Git友情提醒，feature-vulcan分支还没有被合并，<br>
+如果删除，将丢失掉修改，<br>
 如果要强行删除，需要使用大写的-D参数。
 
 现在我们强行删除：
@@ -1024,7 +1028,9 @@ Git友情提醒，feature-vulcan分支还没有被合并，
 
 ## 多人协作
 
-当你从远程仓库克隆时，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且，远程仓库的默认名称是origin。
+当你从远程仓库克隆时，<br>
+实际上Git自动把本地的master分支和远程的master分支对应起来了，<br>
+并且，远程仓库的默认名称是origin。
 
 ### 查看远程库的信息
 
@@ -1043,16 +1049,18 @@ origin  git@github.com:michaelliao/learngit.git (push)
 
 ### 推送分支
 
-推送分支，
-就是把该分支上的所有本地提交推送到远程库。
-推送时，要指定本地分支，
+推送分支，就是把该分支上的所有本地提交推送到远程库。
+
+推送时，要指定本地分支，<br>
 这样，Git就会把该分支推送到远程库对应的远程分支上：
+
 > git push origin master
 
 如果要推送其他分支，比如dev，就改成：
+
 > git push origin dev
 
-但是，并不是一定要把本地分支往远程推送，
+但是，并不是一定要把本地分支往远程推送，<br>
 那么，哪些分支需要推送，哪些不需要呢？
 
 - master分支是主分支，因此要时刻与远程同步；
@@ -1070,20 +1078,19 @@ origin  git@github.com:michaelliao/learngit.git (push)
 
 > git clone git@github.com:michaelliao/learngit.git
 
-当你的小伙伴从远程库clone时，
-默认情况下，你的小伙伴只能看到本地的master分支。
+当你的小伙伴从远程库clone时，<br>
+默认情况下，你的小伙伴只能看到本地的master分支。<br>
 可以用git branch命令看看：
 
 > git branch
 > \* master
 
-现在，你的小伙伴要在dev分支上开发，
-就必须创建远程origin的dev分支到本地，
+现在，你的小伙伴要在dev分支上开发，就必须创建远程origin的dev分支到本地，<br>
 于是他用这个命令创建本地dev分支：
 
 > git checkout -b dev origin/dev
 
-现在，他就可以在dev上继续修改，
+现在，他就可以在dev上继续修改，<br>
 然后，时不时地把dev分支push到远程：
 
 ```bash
@@ -1092,7 +1099,7 @@ git commit -m "add env"
 git push origin dev
 ```
 
-你的小伙伴已经向origin/dev分支推送了他的提交，
+你的小伙伴已经向origin/dev分支推送了他的提交，<br>
 而碰巧你也对同样的文件作了修改，并试图推送：
 
 ```bash
@@ -1101,16 +1108,15 @@ git commit -m "add new env"
 git push origin dev
 ```
 
-推送失败，
-因为你的小伙伴的最新提交和你试图推送的提交有冲突，
-解决办法也很简单，
-Git已经提示我们，先用git pull把最新的提交从origin/dev抓下来，
+推送失败，因为你的小伙伴的最新提交和你试图推送的提交有冲突，
+
+解决办法也很简单，<br>
+Git已经提示我们，先用git pull把最新的提交从origin/dev抓下来，<br>
 然后，在本地合并，解决冲突，再推送：
 
 > git pull
 
-git pull也失败了，
-原因是没有指定本地dev分支与远程origin/dev分支的链接，
+git pull也失败了，原因是没有指定本地dev分支与远程origin/dev分支的链接，<br>
 根据提示，设置dev和origin/dev的链接：
 
 ```bash
@@ -1127,9 +1133,8 @@ CONFLICT (add/add): Merge conflict in env.txt
 Automatic merge failed; fix conflicts and then commit the result.
 ```
 
-这回git pull成功，但是合并有冲突，需要手动解决，
-解决的方法和分支管理中的解决冲突完全一样。
-解决后，提交，再push：
+这回git pull成功，但是合并有冲突，需要手动解决，<br>
+解决的方法和分支管理中的解决冲突完全一样。解决后，提交，再push：
 
 ```bash
 $ git commit -m "fix env conflict"
@@ -1145,9 +1150,10 @@ $ git push origin dev
 - 如果合并有冲突，则解决冲突，并在本地提交；
 - 没有冲突或者解决掉冲突后，再用git push origin \<branch-name>推送就能成功！
 
-如果git pull提示no tracking information，
+如果`git pull`提示`no tracking information`，<br>
 则说明本地分支和远程分支的链接关系没有创建，
-用命令git branch --set-upstream-to \<branch-name> origin/\<branch-name>。
+
+用命令`git branch --set-upstream-to <branch-name> origin/<branch-name>`。
 
 这就是多人协作的工作模式，一旦熟悉了，就非常简单。
 
@@ -1156,14 +1162,15 @@ $ git push origin dev
 - 查看远程库信息，使用git remote -v；
 - 本地新建的分支如果不推送到远程，对其他人就是不可见的；
 - 从本地推送分支，使用git push origin branch-name，如果推送失败，先用git pull抓取远程的新提交；
-- 在本地创建和远程分支对应的分支，使用git checkout -b branch-name origin/branch-name，本地和远程分支的名称最好一致；
+- 在本地创建和远程分支对应的分支，
+  - 使用`git checkout -b branch-name origin/branch-name`，本地和远程分支的名称最好一致；
 - 建立本地分支和远程分支的关联，使用git branch --set-upstream branch-name origin/branch-name；
 - 从远程抓取分支，使用git pull，如果有冲突，要先处理冲突。
 
 ## Rebase
 
-在上一节我们看到了，
-多人在同一个分支上协作时，很容易出现冲突。
+在上一节我们看到了，<br>
+多人在同一个分支上协作时，很容易出现冲突。<br>
 即使没有冲突，后push的童鞋不得不先pull，在本地合并，然后才能push成功。
 
 每次合并再push后，分支变成了这样：
@@ -1175,28 +1182,29 @@ $ git push origin dev
 
 ## 标签管理
 
-发布一个版本时，我们通常先在版本库中打一个标签（tag），
-这样，就唯一确定了打标签时刻的版本。
-将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。
+发布一个版本时，我们通常先在版本库中打一个标签（tag），<br>
+这样，就唯一确定了打标签时刻的版本。<br>
+将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。<br>
 所以，标签也是版本库的一个快照。
 
-Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针。
-跟分支很像对不对？但是分支可以移动，标签不能移动，
+Git的标签虽然是版本库的快照，但其实它就是指向某个commit的指针。<br>
+跟分支很像对不对？但是分支可以移动，标签不能移动，<br>
 所以，创建和删除标签都是瞬间完成的。
 
 ---
 
 Git有commit，为什么还要引入tag？
 
-“请把上周一的那个版本打包发布，commit号是6a5819e...”
 
-“一串乱七八糟的数字不好找！”
-
-如果换一个办法：
-
-“请把上周一的那个版本打包发布，版本号是v1.2”
-
-“好的，按照tag v1.2查找commit就行！”
+> “请把上周一的那个版本打包发布，commit号是6a5819e...”
+> 
+> “一串乱七八糟的数字不好找！”
+> 
+> 如果换一个办法：
+> 
+> “请把上周一的那个版本打包发布，版本号是v1.2”
+> 
+> “好的，按照tag v1.2查找commit就行！”
 
 所以，tag就是一个让人容易记住的有意义的名字，它跟某个commit绑在一起。
 
@@ -1213,14 +1221,16 @@ Switched to branch 'master'
 ```
 
 然后，敲命令git tag \<name>就可以打一个新标签：
+
 > git tag v1.0
 
 可以用命令git tag查看所有标签：
+
 > git tag
 > v1.0
 
-默认标签是打在最新提交的commit上的。有时候，如果忘了打标签，
-比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？
+默认标签是打在最新提交的commit上的。<br>
+有时候，如果忘了打标签，比如，现在已经是周五了，但应该在周一打的标签没有打，怎么办？
 
 方法是找到历史提交的commit id，然后打上就可以了：
 
@@ -1243,8 +1253,7 @@ e475afc add distributed
 eaadf4e wrote a readme file
 ```
 
-比方说要对add merge这次提交打标签，
-它对应的commit id是f52c633，敲入命令：
+比方说要对add merge这次提交打标签，它对应的commit id是f52c633，敲入命令：
 > git tag v0.9 f52c633
 
 再用命令git tag查看标签：
@@ -1252,8 +1261,8 @@ eaadf4e wrote a readme file
 v0.9
 v1.0
 
-注意，标签不是按时间顺序列出，而是按字母排序的。
-可以用git show \<tagname>查看标签信息：
+注意，标签不是按时间顺序列出，而是按字母排序的。<br>
+可以用`git show <tagname>`查看标签信息：
 
 ```bash
 $ git show v0.9
