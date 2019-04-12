@@ -113,6 +113,9 @@ git rebase --continue
 然后重新提交
 如果是第一次提交`git commit`，否则 `git commit --amend`
 git push --force origin branchName 
+
+也可以简写 -f 
+git push -f origin branchName 
 ```
 
 ### 把本地多次提交合并成一个提交
@@ -129,8 +132,11 @@ Date:   Thu Apr 4 22:54:50 2019
 也可以使用前几位，git reset a7f5981d
 
 然后 git add -u 和 git add newFile
-git commit
+git commit -m "balalala..."
 git push --force origin branchName
+
+也可以简写 -f 
+git push -f origin branchName
 ```
 
 ## 初始设置
