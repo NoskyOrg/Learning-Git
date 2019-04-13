@@ -151,6 +151,24 @@ git push -f origin branchName
   - 回退一个版本,清空暂存区,将已提交的内容的版本恢复到本地,
   - 本地的文件也将被恢复的版本替换
 
+## 删除 git 的分支
+
+> <https://blog.csdn.net/taowuhua0505/article/details/80499540>
+
+原理：推送一个空分支到远程分支，其实就相当于删除远程分支
+
+命令：`$ git push origin 【空格】【冒号】【需要删除的分支名字`
+
+比如github上有master和feature分支，我现在想着`删除feature分支`，命令如下：
+
+```bash
+$ git push origin :feature
+
+# 或者常规方法
+$ git push --delete origin feature 
+$ git push -D origin feature 
+```
+
 ## 初始设置
 
 ### 查看 & 设置用户信息
